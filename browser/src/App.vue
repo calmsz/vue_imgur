@@ -1,28 +1,52 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <h1 class="text-primary mt-3">{{ name }}</h1>
+    <p>{{ description }}</p>
+
+    <gallery :images="images"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import Gallery from '@/components/Gallery.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      name: 'Imgur Browser Application',
+      description: 'Let\'s see what\'s hot lately!',
+      images: [],
+    };
+  },
+  methods: {
+    loadData() {
+      return fetch('https://api.imgur.com/3/gallery/hot/viral/0.json', {
+        mode: 'cors',
+        headers: {
+          Authorization: 'Client-ID f1851fad31caf33',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          this.images = data.data;
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    },
+  },
+  mounted() {
+    this.loadData();
+  },
   components: {
-    HelloWorld,
+    Gallery,
   },
 };
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 </style>
