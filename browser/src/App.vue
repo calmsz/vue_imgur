@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     loadData() {
-      return fetch('https://api.imgur.com/3/gallery/hot/viral/0.json', {
+      return fetch('https://api.imgur.com/3/gallery/search/viral/all/0?q=bikes', {
         mode: 'cors',
         headers: {
           Authorization: 'Client-ID f1851fad31caf33',
