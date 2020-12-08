@@ -5,7 +5,7 @@
       data-toggle="modal"
       :data-target='`#exampleModalCenter${image.id}`'
       v-on:click="loadBigImage">
-      <img v-if="isLazyLoad" class="card-img-top"
+      <img v-if="isLazyLoad" class="card-img-top imgThumb"
       :data-src="image.images[0].link.replace('.jpg', 't.jpg')"
       src="favicon.ico"/>
       <img v-if="!isLazyLoad" class="card-img-top"
@@ -27,7 +27,13 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <img width="100%" :id="image.id" alt="" loading="lazy">
       </div>
       <div class="modal-body">
-        body
+        <ul>
+          <li>Title: {{ image.title }}</li>
+          <li>Description: {{ description }}</li>
+          <li>Upvotes: {{ image.ups }}</li>
+          <li>Downvotes: {{ image.downs }}</li>
+          <li>Score: {{ image.score }}</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -38,6 +44,9 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <style scoped>
   img {
     min-width: 160px;
+  }
+  .imgThumb {
+    max-height: 160px;
   }
 </style>
 
