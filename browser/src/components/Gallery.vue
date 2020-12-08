@@ -8,7 +8,7 @@
       <div class="row">
         <div v-for="item in images" :key="item.id">
             <div v-if="!!item.images && item.images[0].type === 'image/jpeg'"
-              class="col-sm m-3">
+              class="col-sm m-2">
               <image-card :image='item' :isLazyLoad=true />
             </div>
         </div>
