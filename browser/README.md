@@ -1,4 +1,4 @@
-# browser
+# Imgur Browser Application
 
 ## Project setup
 ```
